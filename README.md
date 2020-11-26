@@ -1,6 +1,6 @@
-# NetRadio component
+# NetRadio component for Home Assistant
 
-This is a new Media_source that allows you to define a set of web radio stations (e.g., http://streams.greenhost.nl:8080/jazz) and then play them from a service call or by using a custom Lovelace card.
+This is a new Media_source for the Home Assistant home automation framework, that allows you to define a set of web radio stations (e.g., http://streams.greenhost.nl:8080/jazz) and then play them from a service call or by using a custom Lovelace card.
 
 
 ### To install the Media Source component:
