@@ -55,20 +55,26 @@ There are three service calls
 
 __netradio.start_radio__
 
-with parameters:
+Starts playing a given radio station, with parameters:
 
 ```
 entity_id - the media player to play the radio
 radio_index - the number of the radio you want to play, starting from 0, in the list above.
 ```
 
-E.g.:
 ![Service Call Screenshot](./service-screenshot.png)
 
 
 
 __netradio.next_radio__
+
+Switches to the next radio in the list.
+
 {"entity_id": "media_player.bang_olufsen"}
 
+
 __netradio.prev_radio__
+
+Switches to the previous radio in the list.
+
 {"entity_id": "media_player.bang_olufsen"}
