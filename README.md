@@ -27,6 +27,8 @@ netradio:
 
 ### To install the Custom Lovelace card (optional):
 
+![Card Screenshot](./screenshot.png)
+
 1. Copy netradio-card.js to <config>/www directory
 2. Add netradio-card.js to your Lovelace resources (you need to activate advanced mode first), by going to Configuration->Lovelace Dashboards ->Resources->Add resource
 3. add "/local/netradio-card.js" as a Javascript Module
