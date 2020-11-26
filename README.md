@@ -7,20 +7,20 @@ To install the Media Source component:
 1. Copy __init__.py const.py manifest.json media_source.py to <config>/custom_components/netradio
 2. Add a configuration in your configuration.yaml file like this:
   
-netradio:
-  radio: 
-    - url: 'http://streams.greenhost.nl:8080/jazz'
-      name: Concertzender Jazz
-    - url: 'http://icestreaming.rai.it/5.mp3'
-      name: RAI Radio Classica
-    - url: 'http://stream.srg-ssr.ch/m/rsc_de/mp3_128'
-      name: Radio Swiss Classic
-    - url: 'http://wshu.streamguys.org/wshu-classical-mp3'
-      name: WSHU
-    - url: 'https://streams-pfs.kqed.org/kqedradio-pfs?listenerid=cd0bc9c32b46bbe87b06480cabac29f7'
-      name: KQED
-    - url: 'http://kzsu-streams.stanford.edu/kzsu-1-256.mp3'
-      name: KZSU
+> netradio:
+>   radio: 
+>     - url: 'http://streams.greenhost.nl:8080/jazz'
+>       name: Concertzender Jazz
+>     - url: 'http://icestreaming.rai.it/5.mp3'
+>       name: RAI Radio Classica
+>     - url: 'http://stream.srg-ssr.ch/m/rsc_de/mp3_128'
+>       name: Radio Swiss Classic
+>     - url: 'http://wshu.streamguys.org/wshu-classical-mp3'
+>       name: WSHU
+>     - url: 'https://streams-pfs.kqed.org/kqedradio-pfs?listenerid=cd0bc9c32b46bbe87b06480cabac29f7'
+>       name: KQED
+>     - url: 'http://kzsu-streams.stanford.edu/kzsu-1-256.mp3'
+>       name: KZSU
   
 
 To install the Custom Lovelace card (optional):
