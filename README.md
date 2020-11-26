@@ -41,9 +41,19 @@ entities:
 ```
 
 
-You can play the radios from the Media Browser panel, or fron the Custom Lovelace Card, or by calling a service:
+## How to use
 
-netradio.start_radio
+You can play the radios from the Custom Lovelace Card, the Media Browser panel, or by calling a service:
+
+### Media browser
+![Card Screenshot](./media-browser-screenshot.png)
+
+
+### Service calls
+
+There are three service calls
+
+__netradio.start_radio__
 
 with parameters:
 
@@ -56,3 +66,8 @@ E.g.:
 {"entity_id": "media_player.bang_olufsen", "radio_index":0}
 
 
+__netradio.next_radio__
+{"entity_id": "media_player.bang_olufsen"}
+
+__netradio.prev_radio__
+{"entity_id": "media_player.bang_olufsen"}
