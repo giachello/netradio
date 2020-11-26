@@ -27,7 +27,15 @@ netradio:
 To install the Custom Lovelace card (optional):
 
 1. Copy netradio-card.js to <config>/www directory
-2. Add netradio-card.js to your Lovelace resources (you need to activate advanced mode first).
+2. Add netradio-card.js to your Lovelace resources (you need to activate advanced mode first), by going to Configuration->Lovelace Dashboards ->Resources->Add resource
+3. add "/local/netradio-card.js" as a Javascript Module
+4. Add the card in your Lovelace UI by using the following configuration example (replace your media player name):
+  
+```
+type: 'custom:netradio-card'
+entities:
+  - media_player.bang_olufsen
+```
 
 
 You can play the radios from the Media Browser panel, or fron the Custom Lovelace Card, or by calling a service:
