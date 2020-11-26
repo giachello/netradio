@@ -35,8 +35,11 @@ You can play the radios from the Media Browser panel, or fron the Custom Lovelac
 netradio.start_radio
 
 with parameters:
+
+```
 entity_id - the media player to play the radio
 radio_index - the number of the radio you want to play, starting from 0, in the list above.
+```
 
 E.g.:
 {"entity_id": "media_player.bang_olufsen", "radio_index":0}
