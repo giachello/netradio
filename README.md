@@ -4,8 +4,8 @@ This is a new Media_source for the Home Assistant home automation framework, tha
 
 
 ### To install the Media Source component:
-1. Create a netradio folder inside the <config>/custom_components folder
-2. Copy \_\_init__.py, const.py, manifest.json, media_source.py to <config>/custom_components/netradio
+1. Create a netradio folder inside the config/custom_components folder
+2. Copy \_\_init__.py, const.py, manifest.json, media_source.py to config/custom_components/netradio
 3. Add a configuration in your configuration.yaml file like this:
 
 ```
