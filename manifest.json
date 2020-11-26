@@ -1,0 +1,16 @@
+{
+  "domain": "netradio",
+  "name": "NetRadio",
+  "documentation": "https://www.home-assistant.io/integrations/netradio",
+  "requirements": [],
+  "ssdp": [],
+  "zeroconf": [],
+  "homekit": {},
+  "dependencies": [],
+  "after_dependencies": [
+    "media_source"
+  ],
+  "codeowners": [
+    "@giachello"
+  ]
+}
