@@ -3,9 +3,10 @@
 This is a new Media_source that allows you to define a set of web radio stations (e.g., http://streams.greenhost.nl:8080/jazz) and then play them from a service call or by using a custom Lovelace card.
 
 
-To install the Media Source component:
-1. Copy \_\_init__.py const.py manifest.json media_source.py to <config>/custom_components/netradio
-2. Add a configuration in your configuration.yaml file like this:
+### To install the Media Source component:
+1. Create a netradio folder inside the <config>/custom_components folder
+2. Copy \_\_init__.py, const.py, manifest.json, media_source.py to <config>/custom_components/netradio
+3. Add a configuration in your configuration.yaml file like this:
 
 ```
 netradio:
@@ -24,7 +25,7 @@ netradio:
       name: KZSU
 ```  
 
-To install the Custom Lovelace card (optional):
+### To install the Custom Lovelace card (optional):
 
 1. Copy netradio-card.js to <config>/www directory
 2. Add netradio-card.js to your Lovelace resources (you need to activate advanced mode first), by going to Configuration->Lovelace Dashboards ->Resources->Add resource
