@@ -5,7 +5,7 @@ This is a new Media_source for the Home Assistant home automation framework, tha
 
 ### To install the Media Source component:
 1. Create a netradio folder inside the config/custom_components folder
-2. Copy \_\_init__.py, const.py, manifest.json, media_source.py to config/custom_components/netradio
+2. Copy \_\_init__.py, const.py, manifest.json, media_source.py, services.yaml to config/custom_components/netradio
 3. Add a configuration in your configuration.yaml file like this:
 
 ```
@@ -24,6 +24,9 @@ netradio:
     - url: 'http://kzsu-streams.stanford.edu/kzsu-1-256.mp3'
       name: KZSU
 ```  
+
+You can find a lot of network radios in directories like this one: https://www.radio-browser.info/
+
 
 ### To install the Custom Lovelace card (optional):
 
