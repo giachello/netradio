@@ -1,7 +1,7 @@
 {
   "domain": "netradio",
   "name": "NetRadio",
-  "documentation": "https://www.home-assistant.io/integrations/netradio",
+  "documentation": "https://github.com/giachello/netradio",
   "requirements": [],
   "ssdp": [],
   "zeroconf": [],
