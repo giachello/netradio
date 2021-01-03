@@ -75,7 +75,7 @@ radio_index - the number of the radio you want to play, starting from 0, in the 
 
 __netradio.next_radio__
 
-Switches to the next radio in the list.
+Switches to the next radio in the list. Goes back to the first radio when you switch past the last one in the list.
 
 {"entity_id": "media_player.bang_olufsen"}
 
