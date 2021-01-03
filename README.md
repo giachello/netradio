@@ -6,7 +6,10 @@ This is a new Media_source for the Home Assistant home automation framework, tha
 ### To install the Media Source component:
 1. Create a netradio folder inside the config/custom_components folder
 2. Copy \_\_init__.py, const.py, manifest.json, media_source.py, services.yaml to config/custom_components/netradio
-3. Add a configuration in your configuration.yaml file like this:
+3. Add a configuration in your configuration.yaml file like this. 
+* URL is the link to the audio stream. 
+* Name is the user friendly name. 
+* Icon is a link to a thumbnail image that will be shown in the browser.
 
 ```
 netradio:
@@ -15,6 +18,7 @@ netradio:
       name: Concertzender Jazz
     - url: 'http://icestreaming.rai.it/5.mp3'
       name: RAI Radio Classica
+      icon: 'https://cdn-profiles.tunein.com/s17167/images/logoq.png?t=153677'
     - url: 'http://stream.srg-ssr.ch/m/rsc_de/mp3_128'
       name: Radio Swiss Classic
     - url: 'http://wshu.streamguys.org/wshu-classical-mp3'
