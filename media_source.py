@@ -21,8 +21,15 @@ from homeassistant.components.media_source.models import (
 )
 
 
-from .const import MIME_TYPE, DOMAIN, ENTITY_ID
-
+from .const import (
+    MIME_TYPE,
+    DOMAIN,
+    ENTITY_ID,
+    CONF_NETRADIO_RADIOS,
+    CONF_NETRADIO_RADIO_URL,
+    CONF_NETRADIO_RADIO_NAME,
+    CONF_NETRADIO_RADIO_ICON,
+)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -85,10 +92,13 @@ class NetRadioSource(MediaSource):
         for child_name in self._radios:
             child = BrowseMediaSource(
                 domain=DOMAIN,
-                identifier=child_name.get("url"),
+                identifier=child_name.get(CONF_NETRADIO_RADIO_URL),
                 media_class=MEDIA_CLASS_MUSIC,
                 media_content_type=MEDIA_TYPE_MUSIC,
-                title=child_name.get("name") + " URL: " + child_name.get("url"),
+                title=child_name.get(CONF_NETRADIO_RADIO_NAME)
+                + " URL: "
+                + child_name.get(CONF_NETRADIO_RADIO_URL),
+                thumbnail=child_name.get(CONF_NETRADIO_RADIO_ICON),
                 can_play=True,
                 can_expand=False,
             )
