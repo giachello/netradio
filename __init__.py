@@ -1,24 +1,39 @@
 """The NetRadio Media Source integration."""
 import asyncio
-from homeassistant.components.media_player import MediaPlayerEntity
+from homeassistant.components.media_player import ATTR_MEDIA_CONTENT_ID
 import logging
 import voluptuous as vol
 
 from homeassistant.core import HomeAssistant
 import homeassistant.helpers.config_validation as cv
-from homeassistant.helpers.config_validation import string
+from homeassistant.helpers.config_validation import string, url
 
 from .media_source import NetRadioSource
 
-from .const import DOMAIN, MIME_TYPE
-
-CONF_NETRADIO_URLS = "radio"
+from .const import (
+    MIME_TYPE,
+    DOMAIN,
+    ENTITY_ID,
+    CONF_NETRADIO_RADIOS,
+    CONF_NETRADIO_RADIO_URL,
+    CONF_NETRADIO_RADIO_NAME,
+    CONF_NETRADIO_RADIO_ICON,
+)
 
 CONFIG_SCHEMA = vol.Schema(
     {
         DOMAIN: vol.Schema(
             {
-                vol.Required(CONF_NETRADIO_URLS): cv.ensure_list,
+                vol.Required(CONF_NETRADIO_RADIOS): vol.All(
+                    cv.ensure_list,
+                    [
+                        {
+                            vol.Required(CONF_NETRADIO_RADIO_URL): cv.url,
+                            vol.Required(CONF_NETRADIO_RADIO_NAME): str,
+                            vol.Optional(CONF_NETRADIO_RADIO_ICON): cv.url,
+                        }
+                    ],
+                )
             }
         )
     },
@@ -61,7 +76,7 @@ async def async_setup(hass: HomeAssistant, config: dict):
         """Start radio on specified player entity."""
         idx = service.data[ATTR_IDX]
         player = service.data.get(ATTR_PLAYER_ENTITY)
-        radios = config[DOMAIN][CONF_NETRADIO_URLS]
+        radios = config[DOMAIN][CONF_NETRADIO_RADIOS]
 
         if idx < len(radios):
             # entity_id: media_player.bang_olufsen media_content_id: http://streams.greenhost.nl:8080/jazz media_content_type: music
@@ -70,7 +85,7 @@ async def async_setup(hass: HomeAssistant, config: dict):
                 "play_media",
                 {
                     "entity_id": player,
-                    "media_content_id": radios[idx].get("url"),
+                    "media_content_id": radios[idx].get(CONF_NETRADIO_RADIO_URL),
                     "media_content_type": MIME_TYPE,
                 },
                 False,
@@ -79,12 +94,11 @@ async def async_setup(hass: HomeAssistant, config: dict):
     def next_radio(service):
         """Switch Radio to the next entity."""
         player = service.data.get(ATTR_PLAYER_ENTITY)
-        radios = config[DOMAIN][CONF_NETRADIO_URLS]
-        mplayer: MediaPlayerEntity = hass.states.get(player)
-        url: string = mplayer.media_content_id()
+        radios = config[DOMAIN][CONF_NETRADIO_RADIOS]
+        url: string = hass.states.get(player).attributes.get(ATTR_MEDIA_CONTENT_ID)
         idx: int = 0
         for i in radios:
-            if i.get("url") == url:
+            if i.get(CONF_NETRADIO_RADIO_URL) == url:
                 idx = radios.index(i)
         idx = idx + 1
         if idx >= len(radios):
@@ -96,7 +110,7 @@ async def async_setup(hass: HomeAssistant, config: dict):
             "play_media",
             {
                 "entity_id": player,
-                "media_content_id": radios[idx].get("url"),
+                "media_content_id": radios[idx].get(CONF_NETRADIO_RADIO_URL),
                 "media_content_type": MIME_TYPE,
             },
             False,
@@ -105,9 +119,8 @@ async def async_setup(hass: HomeAssistant, config: dict):
     def prev_radio(service):
         """Switch radio to previous player entity."""
         player = service.data.get(ATTR_PLAYER_ENTITY)
-        radios = config[DOMAIN][CONF_NETRADIO_URLS]
-        mplayer: MediaPlayerEntity = hass.states.get(player)
-        url: string = mplayer.media_content_id()
+        radios = config[DOMAIN][CONF_NETRADIO_RADIOS]
+        url: string = hass.states.get(player).attributes.get(ATTR_MEDIA_CONTENT_ID)
         idx: int = 0
         for i in radios:
             if i.get("url") == url:
@@ -122,7 +135,7 @@ async def async_setup(hass: HomeAssistant, config: dict):
             "play_media",
             {
                 "entity_id": player,
-                "media_content_id": radios[idx].get("url"),
+                "media_content_id": radios[idx].get(CONF_NETRADIO_RADIO_URL),
                 "media_content_type": MIME_TYPE,
             },
             False,
@@ -132,7 +145,7 @@ async def async_setup(hass: HomeAssistant, config: dict):
 
     # Create the NetRadio Source
     _LOGGER.info("NetRadio setting up")
-    radios = config[DOMAIN][CONF_NETRADIO_URLS]
+    radios = config[DOMAIN][CONF_NETRADIO_RADIOS]
     source = NetRadioSource(hass, radios)
     hass.data[DOMAIN][DOMAIN] = source
     hass.states.async_set("netradio.netradio", "Initialized", {"radios": radios})
