@@ -77,16 +77,17 @@ __netradio.next_radio__
 
 Switches to the next radio in the list. Goes back to the first radio when you switch past the last one in the list.
 
-{"entity_id": "media_player.bang_olufsen"}
+`{"entity_id": "media_player.bang_olufsen"}`
 
 
 __netradio.prev_radio__
 
 Switches to the previous radio in the list.
 
-{"entity_id": "media_player.bang_olufsen"}
+`{"entity_id": "media_player.bang_olufsen"}`
 
-** Handling Slow Start Time with Chromecast
+
+## Fixing Slow Start Time with Chromecast
 
 If you use chromecast as a media player for your radios, you may experience that some streams take a long time to start playing (up to 30 seconds or more). [This is a bug in the Chromecast that they've not fixed despite many bug reports](https://stackoverflow.com/questions/52504992/google-cast-slow-for-some-streams). However there is a workaround: after starting the radio with the __netradio.start_radio__ service, wait 2 or 3 seconds and then call the __media_player.media_play__ service, as shown below. That will kick the Chromecast to actually start playing immediately.
 
