@@ -13,7 +13,7 @@ This is a new Media_source for the Home Assistant home automation framework, tha
 
 ```
 netradio:
-  radio: 
+  radios: 
     - url: 'http://streams.greenhost.nl:8080/jazz'
       name: Concertzender Jazz
     - url: 'http://icestreaming.rai.it/5.mp3'
