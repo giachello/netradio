@@ -89,7 +89,7 @@ Switches to the previous radio in the list.
 
 ## Fixing Slow Start Time with Chromecast
 
-If you use chromecast as a media player for your radios, you may experience that some streams take a long time to start playing (up to 30 seconds or more). [This is a bug in the Chromecast that they've not fixed despite many bug reports](https://stackoverflow.com/questions/52504992/google-cast-slow-for-some-streams). However there is a workaround: after starting the radio with the __netradio.start_radio__ service, wait 2 or 3 seconds and then call the __media_player.media_play__ service, as shown below. That will kick the Chromecast to actually start playing immediately.
+If you use Chromecast as a media player for your radios, you may experience that some streams take a long time to start playing (up to 30 seconds or more). [This is a bug in Chromecast that Google didn't fix despite bug reports](https://stackoverflow.com/questions/52504992/google-cast-slow-for-some-streams). However there is a workaround: after starting the radio with the __netradio.start_radio__ service, wait 2 or 3 seconds and then call the __media_player.media_play__ service, as shown below. That will kick the Chromecast to actually start playing immediately.
 
 ![image](https://user-images.githubusercontent.com/60585229/112392340-746a6b80-8cb6-11eb-8d86-0ed1545e338e.png)
 
