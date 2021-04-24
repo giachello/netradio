@@ -1,6 +1,7 @@
 {
   "domain": "netradio",
   "name": "NetRadio",
+  "version": "2013.3.0",
   "documentation": "https://github.com/giachello/netradio",
   "requirements": [],
   "ssdp": [],
