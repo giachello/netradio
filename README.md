@@ -5,11 +5,11 @@ This is a new Media_source for the Home Assistant home automation framework, tha
 
 ### To install the Media Source component:
 1. Create a netradio folder inside the config/custom_components folder
-2. Copy \_\_init__.py, const.py, manifest.json, media_source.py, services.yaml to config/custom_components/netradio
-3. Add a configuration in your configuration.yaml file like this. 
+2. Copy `\_\_init__.py`, `const.py`, `manifest.json`, `media_source.py`, `services.yaml` to `config/custom_components/netradio`
+3. Add a configuration in your `configuration.yaml` file like this. 
 * URL is the link to the audio stream. 
 * Name is the user friendly name. 
-* Icon is a link to a thumbnail image that will be shown in the browser.
+* Icon is a link to a thumbnail image that will be shown in the browser and on the Lovelace card.
 
 ```
 netradio:
@@ -31,12 +31,25 @@ netradio:
 
 You can find a lot of network radios in directories like this one: https://www.radio-browser.info/
 
+For added privacy, you can download the icons into a `icons` directory inside `<config>/www` and then link those icons as shown below.
+
+```
+netradio:
+  radios: 
+    - url: 'http://streams.greenhost.nl:8080/jazz'
+      name: Concertzender Jazz
+      icon: 'http://hassio.local:8123/local/icons/cz.png'
+    - url: 'http://icestreaming.rai.it/5.mp3'
+      name: RAI Radio Classica
+      icon: 'http://hassio.local:8123/local/icons/rai.png'
+```
+
 
 ### To install the Custom Lovelace card (optional):
 
 ![Card Screenshot](./screenshot.png)
 
-1. Copy netradio-card.js to <config>/www directory
+1. Copy netradio-card.js to `<config>/www` directory
 2. Add netradio-card.js to your Lovelace resources (you need to activate advanced mode first), by going to Configuration->Lovelace Dashboards ->Resources->Add resource
 3. add "/local/netradio-card.js" as a Javascript Module
 4. Add the card in your Lovelace UI by using the following configuration example (replace your media player name):
