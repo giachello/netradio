@@ -57,7 +57,7 @@ class NetradioCard extends HTMLElement {
         stationList.classList.add('station-list');
 
         hass.states["netradio.netradio"].attributes.radios.forEach(linkCfg => {
-            const stationButton = this.buildStationSwitch(linkCfg.name, linkCfg.url);
+            const stationButton = this.buildStationSwitch(linkCfg.name, linkCfg.url, linkCfg.icon);
 
             this._stationButtons.push(stationButton);
             stationList.appendChild(stationButton);
@@ -179,11 +179,14 @@ class NetradioCard extends HTMLElement {
         })
     }
 
-    buildStationSwitch(name, url) {
+    buildStationSwitch(name, url, icon) {
         const btn = document.createElement('mwc-button');
         btn.stationUrl = url;
         btn.className = 'juke-toggle';
-        btn.innerText = name;
+        if (icon === undefined) {
+			btn.innerText = name;
+		} else 
+			btn.innerHTML = '<img src="' + icon + '"  height="32" />';;
         btn.addEventListener('click', this.onStationSelect.bind(this));
         return btn;
     }
