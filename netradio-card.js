@@ -77,6 +77,9 @@ class NetradioCard extends HTMLElement {
         muteButton.icon = 'hass:volume-high';
         muteButton.isMute = false;
         muteButton.addEventListener('click', this.onMuteUnmute.bind(this));
+		const mbIcon = document.createElement('ha-icon');
+		mbIcon.icon = 'hass:volume-high';
+		muteButton.appendChild(mbIcon);
 
         const slider = document.createElement('ha-slider');
         slider.min = 0;
@@ -88,6 +91,9 @@ class NetradioCard extends HTMLElement {
         stopButton.icon = 'hass:stop';
         stopButton.setAttribute('disabled', true);
         stopButton.addEventListener('click', this.onStop.bind(this));
+		const sbIcon = document.createElement('ha-icon');
+		sbIcon.icon = 'hass:stop';
+		stopButton.appendChild(sbIcon);
 
 
         this._hassObservers.push(hass => {
@@ -123,10 +129,12 @@ class NetradioCard extends HTMLElement {
                 slider.disabled = true;
                 muteButton.icon = 'hass:volume-off';
                 muteButton.isMute = true;
+				muteButton.firstElementChild.icon = 'hass:volume-off';
             } else if (!speakerState.is_volume_muted && slider.disabled) {
                 slider.disabled = false;
                 muteButton.icon = 'hass:volume-high';
                 muteButton.isMute = false;
+				muteButton.firstElementChild.icon = 'hass:volume-high';
             }
         });
 
