@@ -1,7 +1,7 @@
 """Constants for the NetRadio Media Source integration."""
 
 DOMAIN = "netradio"
-MIME_TYPE = "audio/mpeg"
+MIME_TYPE = "music"
 ENTITY_ID = "netradio.netradio"
 
 CONF_NETRADIO_RADIOS = "radios"
