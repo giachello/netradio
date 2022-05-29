@@ -1,0 +1,6 @@
+{
+  "name": "Netradio",
+  "country": "US",
+  "domains": ["media_source"],
+  "render_readme" : true
+}
