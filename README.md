@@ -1,3 +1,12 @@
+
+# this component is now deprecated
+
+Since 2022.3 Home Assistant has a Radio Browser Component that is much more complete. I will not maintain this going forward.
+
+https://www.home-assistant.io/blog/2022/03/02/release-20223/#more-media-sources
+
+
+
 # NetRadio component for Home Assistant
 
 This is a new Media_source for the Home Assistant home automation framework, that allows you to define a set of web radio stations (e.g., http://streams.greenhost.nl:8080/jazz) and then play them from a service call or by using a custom Lovelace card.
