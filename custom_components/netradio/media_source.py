@@ -3,11 +3,7 @@
 from homeassistant.components.climate.const import ATTR_HVAC_MODE
 import logging
 
-from homeassistant.components.media_player.const import (
-    MEDIA_CLASS_DIRECTORY,
-    MEDIA_CLASS_MUSIC,
-    MEDIA_TYPE_MUSIC,
-)
+from homeassistant.components.media_player.const import MediaClass, MediaType
 
 from homeassistant.core import HomeAssistant
 from homeassistant.components.media_player.errors import BrowseError
@@ -79,7 +75,7 @@ class NetRadioSource(MediaSource):
         media = BrowseMediaSource(
             domain=DOMAIN,
             identifier=source,
-            media_class=MEDIA_CLASS_DIRECTORY,
+            media_class=MediaClass.DIRECTORY,
             media_content_type="",
             title="Netradio",
             can_play=False,
@@ -93,8 +89,8 @@ class NetRadioSource(MediaSource):
             child = BrowseMediaSource(
                 domain=DOMAIN,
                 identifier=child_name.get(CONF_NETRADIO_RADIO_URL),
-                media_class=MEDIA_CLASS_MUSIC,
-                media_content_type=MEDIA_TYPE_MUSIC,
+                media_class=MediaClass.MUSIC,
+                media_content_type=MediaType.MUSIC,
                 title=child_name.get(CONF_NETRADIO_RADIO_NAME)
                 + " URL: "
                 + child_name.get(CONF_NETRADIO_RADIO_URL),

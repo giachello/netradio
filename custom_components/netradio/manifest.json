@@ -1,17 +1,18 @@
 {
   "domain": "netradio",
   "name": "NetRadio",
-  "version": "2013.3.0",
-  "documentation": "https://github.com/giachello/netradio",
-  "requirements": [],
-  "ssdp": [],
-  "zeroconf": [],
-  "homekit": {},
-  "dependencies": [],
+  "codeowners": [
+    "@giachello"
+  ],
   "after_dependencies": [
     "media_source"
   ],
-  "codeowners": [
-    "@giachello"
-  ]
+  "dependencies": [],
+  "documentation": "https://github.com/giachello/netradio",
+  "homekit": {},
+  "issue_tracker": "https://github.com/giachello/netradio/issues",
+  "requirements": [],
+  "ssdp": [],
+  "version": "2013.3.0",
+  "zeroconf": []
 }
