@@ -13,6 +13,7 @@ class NetradioCard extends HTMLElement {
             this.appendChild(getStyle());
             const card = document.createElement('ha-card');
             this.content = document.createElement('div');
+            this.content.className = 'card-content';
             card.appendChild(this.content);
             this.appendChild(card);
 
@@ -30,22 +31,24 @@ class NetradioCard extends HTMLElement {
     }
 
     buildSpeakerSwitches(hass) {
-        this._tabs = document.createElement('paper-tabs');
-        this._tabs.setAttribute('scrollable', true);
-        this._tabs.addEventListener('iron-activate', (e) => this.onSpeakerSelect(e.detail.item.entityId));
+        this._tabs = document.createElement('div');
+        this._tabs.className = 'speaker-tabs';
+        this._speakerTabButtons = [];
 
         this.config.entities.forEach(entityId => {
             if (!hass.states[entityId]) {
                 console.log('Netradio Card: No State for entity', entityId);
                 return;
             }
-            this._tabs.appendChild(this.buildSpeakerSwitch(entityId, hass));
+            const speakerTab = this.buildSpeakerSwitch(entityId, hass);
+            this._speakerTabButtons.push(speakerTab);
+            this._tabs.appendChild(speakerTab);
         });
 
         // automatically activate the first speaker that's playing
         const firstPlayingSpeakerIndex = this.findFirstPlayingIndex(hass);
         this._selectedSpeaker = this.config.entities[firstPlayingSpeakerIndex];
-        this._tabs.setAttribute('selected', firstPlayingSpeakerIndex);
+        this.updateSpeakerSwitchStates();
 
         return this._tabs;
     }
@@ -146,7 +149,22 @@ class NetradioCard extends HTMLElement {
 
     onSpeakerSelect(entityId) {
         this._selectedSpeaker = entityId;
+        this.updateSpeakerSwitchStates();
         this._hassObservers.forEach(listener => listener(this.hass));
+    }
+
+    updateSpeakerSwitchStates() {
+        if (!this._speakerTabButtons) {
+            return;
+        }
+
+        this._speakerTabButtons.forEach(tab => {
+            if (tab.entityId === this._selectedSpeaker) {
+                tab.setAttribute('selected', true);
+            } else {
+                tab.removeAttribute('selected');
+            }
+        });
     }
 
     onChangeVolumeSlider(e) {
@@ -228,11 +246,12 @@ class NetradioCard extends HTMLElement {
     }
 
     buildSpeakerSwitch(entityId, hass) {
-        const entity = hass.states[entityId];
-
-        const btn = document.createElement('paper-tab');
-        btn.entityId = entityId;        
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'speaker-tab';
+        btn.entityId = entityId;
         btn.innerText = hass.states[entityId].attributes.friendly_name;
+        btn.addEventListener('click', () => this.onSpeakerSelect(entityId));
         return btn;
     }
 
@@ -256,6 +275,10 @@ function getStyle() {
 
     const ownStyle = document.createElement('style');
     ownStyle.innerHTML = `
+    .card-content {
+        padding: 8px 0 12px;
+    }
+
     .layout.horizontal, .layout.vertical {
         display: -ms-flexbox;
         display: -webkit-flex;
@@ -287,7 +310,37 @@ function getStyle() {
     }
     
     .volume {
-        padding: 10px 20px;
+        padding: 10px 16px;
+    }
+
+    .station-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 4px 16px 0;
+    }
+
+    .speaker-tabs {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 0 12px 8px;
+    }
+
+    .speaker-tab {
+        border: none;
+        border-radius: 999px;
+        background: var(--secondary-background-color);
+        color: var(--primary-text-color);
+        padding: 6px 12px;
+        cursor: pointer;
+        font: inherit;
+        white-space: nowrap;
+    }
+
+    .speaker-tab[selected] {
+        background: var(--primary-color);
+        color: var(--text-primary-color);
     }
     
     mwc-button.juke-toggle {
@@ -300,12 +353,7 @@ function getStyle() {
         color: var(--text-primary-color);
     }
     
-    paper-tabs {
-        background-color: var(--primary-color);
-        color: var(--text-primary-color);
-        --paper-tabs-selection-bar-color: var(--text-primary-color, #FFF);
-    }
-            
+
     `;
 
     frag.appendChild(included);
